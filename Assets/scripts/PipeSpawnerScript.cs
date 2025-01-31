@@ -6,6 +6,7 @@ public class PipeSpawnerScript : MonoBehaviour
     public float spawnRate = 2;
     private float timer = 0;
     public float heightOffset = 5;
+    public bool isGameOver = false;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -16,6 +17,10 @@ public class PipeSpawnerScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (isGameOver)
+        {
+            return;
+        }
         if (timer > spawnRate)
         {
             SpawnPipe();
