@@ -8,15 +8,16 @@ TagManager:
   - Pipe
   - PipeSpawner
   - Bird
+  - Clouds
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - Bird
+  - 
   - Water
   - UI
-  - 
-  - 
+  - Background
+  - Bird
   - 
   - 
   - 

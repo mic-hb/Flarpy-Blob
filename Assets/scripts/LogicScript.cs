@@ -8,10 +8,11 @@ public class LogicScript : MonoBehaviour
     public Text scoreText;
     public GameObject gameOverScreen;
 
+    public ParticleSystem clouds;
     public GameObject[] pipes;
-    public Rigidbody2D birdRigidBody;
     public BirdScript birdScript;
     public PipeSpawnerScript pipeSpawnerScript;
+
     public AudioSource dingSFX;
     public AudioSource bigDingSFX;
     public AudioSource gameOverSFX;
@@ -19,9 +20,9 @@ public class LogicScript : MonoBehaviour
 
     void Awake()
     {
-        birdRigidBody = GameObject.FindGameObjectWithTag("Bird").GetComponent<Rigidbody2D>();
         pipeSpawnerScript = GameObject.FindGameObjectWithTag("PipeSpawner").GetComponent<PipeSpawnerScript>();
         birdScript = GameObject.FindGameObjectWithTag("Bird").GetComponent<BirdScript>();
+        clouds = GameObject.FindGameObjectWithTag("Clouds").GetComponent<ParticleSystem>();
     }
 
     void Start()
@@ -52,8 +53,11 @@ public class LogicScript : MonoBehaviour
 
     public void gameOver()
     {
+        clouds.Pause();
+
         backgroundMusic.Stop();
         gameOverSFX.Play();
+
         gameOverScreen.SetActive(true);
         pipeSpawnerScript.isSpawning = false;
 
@@ -63,8 +67,6 @@ public class LogicScript : MonoBehaviour
             pipe.GetComponent<PipeMoveScript>().stopMoving();
         }
 
-        birdScript.disableJump();
-        birdRigidBody.gravityScale = 0;
-        birdRigidBody.linearVelocity = Vector2.zero;
+        birdScript.freeze();
     }
 }

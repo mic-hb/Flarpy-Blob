@@ -36,9 +36,11 @@ public class BirdScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.Rotate(new Vector3(0, 0, 90 * Time.deltaTime));
+        if (!birdIsAlive) return;
 
-        if (jump.WasPressedThisFrame() && birdIsAlive)
+
+        transform.Rotate(new Vector3(0, 0, 90 * Time.deltaTime));
+        if (jump.WasPressedThisFrame())
         {
             flapSFX.PlayOneShot(flapSFX.clip);
             birdRigidBody.linearVelocity = Vector2.up * flapStrength;
@@ -55,8 +57,12 @@ public class BirdScript : MonoBehaviour
         logic.gameOver();
     }
 
-    public void disableJump()
+    public void freeze()
     {
         jump.Disable();
+        birdIsAlive = false;
+        birdRigidBody.gravityScale = 0;
+        birdRigidBody.linearVelocity = Vector2.zero;
+        birdRigidBody.constraints = RigidbodyConstraints2D.FreezeAll;
     }
 }
