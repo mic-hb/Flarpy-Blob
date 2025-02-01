@@ -5603,43 +5603,11 @@ MonoBehaviour:
   jump:
     m_Name: Jump
     m_Type: 0
-    m_ExpectedControlType: 
+    m_ExpectedControlType: Touch
     m_Id: b76bbe3b-18c4-49b8-aebe-28109fd18726
     m_Processors: 
     m_Interactions: 
-    m_SingletonActionBindings:
-    - m_Name: 
-      m_Id: 3039a7a6-2113-40b4-bbb0-be5d914092db
-      m_Path: <Keyboard>/space
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Jump
-      m_Flags: 0
-    - m_Name: 
-      m_Id: 66451e44-8907-414f-ad14-b8c1c4214ea6
-      m_Path: <Mouse>/leftButton
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Jump
-      m_Flags: 0
-    - m_Name: 
-      m_Id: 9eacae18-25ef-4485-8b76-d1c1acd9bbf5
-      m_Path: <Touchscreen>/primaryTouch
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Jump
-      m_Flags: 0
-    - m_Name: 
-      m_Id: 078bc2a5-c268-49a6-a2a3-23370499987b
-      m_Path: 
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Jump
-      m_Flags: 0
+    m_SingletonActionBindings: []
     m_Flags: 0
   logic: {fileID: 1638024174}
 --- !u!58 &1380765356
@@ -5874,8 +5842,8 @@ MonoBehaviour:
   playerScore: 0
   scoreText: {fileID: 1785749095}
   gameOverScreen: {fileID: 2023468256}
+  clouds: {fileID: 0}
   pipes: []
-  birdRigidBody: {fileID: 0}
   birdScript: {fileID: 0}
   pipeSpawnerScript: {fileID: 0}
   dingSFX: {fileID: 1638024175}

@@ -7,22 +7,26 @@ public class BirdScript : MonoBehaviour
     public float flapStrength;
     public float boundary = 10;
     public bool birdIsAlive = true;
-    public InputAction jump;
+    private bool isJumping = false;
     public LogicScript logic;
     private AudioSource flapSFX;
+    private InputAction jumpAction;
+    private PlayerInputActions playerControls;
 
     private void OnEnable()
     {
-        jump.Enable();
+        jumpAction = playerControls.Player.Jump;
+        jumpAction.Enable();
     }
 
     private void OnDisable()
     {
-        jump.Disable();
+        jumpAction.Disable();
     }
 
     void Awake()
     {
+        playerControls = new PlayerInputActions();
         logic = GameObject.FindGameObjectWithTag("Logic").GetComponent<LogicScript>();
         flapSFX = GetComponent<AudioSource>();
     }
@@ -38,9 +42,11 @@ public class BirdScript : MonoBehaviour
     {
         if (!birdIsAlive) return;
 
+        // Check for touch input
+        isJumping = jumpAction.WasPressedThisFrame() || jumpAction.WasPerformedThisFrame() || (Touchscreen.current != null && Touchscreen.current.primaryTouch.isInProgress);
 
         transform.Rotate(new Vector3(0, 0, 90 * Time.deltaTime));
-        if (jump.WasPressedThisFrame())
+        if (isJumping)
         {
             flapSFX.PlayOneShot(flapSFX.clip);
             birdRigidBody.linearVelocity = Vector2.up * flapStrength;
@@ -59,7 +65,7 @@ public class BirdScript : MonoBehaviour
 
     public void freeze()
     {
-        jump.Disable();
+        jumpAction.Disable();
         birdIsAlive = false;
         birdRigidBody.gravityScale = 0;
         birdRigidBody.linearVelocity = Vector2.zero;
