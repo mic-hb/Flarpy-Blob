@@ -21,7 +21,7 @@ public class BirdScript : MonoBehaviour
     {
         transform.Rotate(new Vector3(0, 0, 90 * Time.deltaTime));
 
-        if (Input.GetKeyDown(KeyCode.Space) && birdIsAlive)
+        if ((Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0)) && birdIsAlive)
         {
             myRigidbody.linearVelocity = Vector2.up * flapStrength;
         }
