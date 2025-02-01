@@ -3,13 +3,12 @@ using UnityEngine.InputSystem;
 
 public class BirdScript : MonoBehaviour
 {
-    public Rigidbody2D myRigidbody;
+    public Rigidbody2D birdRigidBody;
     public float flapStrength;
-    public LogicScript logic;
+    public float boundary = 10;
     public bool birdIsAlive = true;
-    public PipeSpawnerScript pipeSpawnerScript;
-    public GameObject[] pipes;
     public InputAction jump;
+    public LogicScript logic;
 
     private void OnEnable()
     {
@@ -25,7 +24,6 @@ public class BirdScript : MonoBehaviour
     void Start()
     {
         logic = GameObject.FindGameObjectWithTag("Logic").GetComponent<LogicScript>();
-        pipeSpawnerScript = GameObject.FindGameObjectWithTag("PipeSpawner").GetComponent<PipeSpawnerScript>();
     }
 
     // Update is called once per frame
@@ -35,20 +33,22 @@ public class BirdScript : MonoBehaviour
 
         if (jump.WasPressedThisFrame() && birdIsAlive)
         {
-            myRigidbody.linearVelocity = Vector2.up * flapStrength;
+            birdRigidBody.linearVelocity = Vector2.up * flapStrength;
+        }
+
+        if (transform.position.y > boundary || transform.position.y < -boundary)
+        {
+            logic.gameOver();
         }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         logic.gameOver();
-        birdIsAlive = false;
-        pipeSpawnerScript.isGameOver = true;
+    }
 
-        pipes = GameObject.FindGameObjectsWithTag("Pipe");
-        foreach (GameObject pipe in pipes)
-        {
-            pipe.GetComponent<PipeMoveScript>().stopMoving();
-        }
+    public void disableJump()
+    {
+        jump.Disable();
     }
 }

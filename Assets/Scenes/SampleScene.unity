@@ -649,7 +649,7 @@ GameObject:
   - component: {fileID: 1380765357}
   m_Layer: 3
   m_Name: Bird
-  m_TagString: Untagged
+  m_TagString: Bird
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -763,12 +763,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b1b8767a7f5523428af2728f1161710, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myRigidbody: {fileID: 1380765354}
+  birdRigidBody: {fileID: 1380765354}
   flapStrength: 18
-  logic: {fileID: 0}
+  boundary: 12
   birdIsAlive: 1
-  pipeSpawnerScript: {fileID: 0}
-  pipes: []
   jump:
     m_Name: Jump
     m_Type: 0
@@ -802,6 +800,7 @@ MonoBehaviour:
       m_Action: Jump
       m_Flags: 0
     m_Flags: 0
+  logic: {fileID: 0}
 --- !u!58 &1380765356
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -915,7 +914,7 @@ MonoBehaviour:
   pipe: {fileID: 2859744131402804092, guid: ee47f04569466634c8e95aa3caa3de1e, type: 3}
   spawnRate: 4
   heightOffset: 5
-  isGameOver: 0
+  isSpawning: 1
 --- !u!1 &1638024172
 GameObject:
   m_ObjectHideFlags: 0
@@ -963,6 +962,10 @@ MonoBehaviour:
   playerScore: 0
   scoreText: {fileID: 1785749095}
   gameOverScreen: {fileID: 2023468256}
+  pipes: []
+  birdRigidBody: {fileID: 0}
+  birdScript: {fileID: 0}
+  pipeSpawnerScript: {fileID: 0}
 --- !u!1 &1785749093
 GameObject:
   m_ObjectHideFlags: 0
