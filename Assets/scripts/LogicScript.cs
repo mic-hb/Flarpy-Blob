@@ -12,12 +12,22 @@ public class LogicScript : MonoBehaviour
     public Rigidbody2D birdRigidBody;
     public BirdScript birdScript;
     public PipeSpawnerScript pipeSpawnerScript;
+    public AudioSource dingSFX;
+    public AudioSource bigDingSFX;
+    public AudioSource gameOverSFX;
+    public AudioSource backgroundMusic;
 
-    void Start()
+    void Awake()
     {
         birdRigidBody = GameObject.FindGameObjectWithTag("Bird").GetComponent<Rigidbody2D>();
         pipeSpawnerScript = GameObject.FindGameObjectWithTag("PipeSpawner").GetComponent<PipeSpawnerScript>();
         birdScript = GameObject.FindGameObjectWithTag("Bird").GetComponent<BirdScript>();
+    }
+
+    void Start()
+    {
+        backgroundMusic.loop = true;
+        backgroundMusic.Play();
     }
 
     [ContextMenu("Increase Score")]
@@ -25,6 +35,14 @@ public class LogicScript : MonoBehaviour
     {
         playerScore += scoreToAdd;
         scoreText.text = playerScore.ToString();
+        if (playerScore % 10 == 0)
+        {
+            bigDingSFX.Play();
+        }
+        else
+        {
+            dingSFX.Play();
+        }
     }
 
     public void restartGame()
@@ -34,6 +52,8 @@ public class LogicScript : MonoBehaviour
 
     public void gameOver()
     {
+        backgroundMusic.Stop();
+        gameOverSFX.Play();
         gameOverScreen.SetActive(true);
         pipeSpawnerScript.isSpawning = false;
 

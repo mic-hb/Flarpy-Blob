@@ -9,6 +9,7 @@ public class BirdScript : MonoBehaviour
     public bool birdIsAlive = true;
     public InputAction jump;
     public LogicScript logic;
+    private AudioSource flapSFX;
 
     private void OnEnable()
     {
@@ -20,10 +21,16 @@ public class BirdScript : MonoBehaviour
         jump.Disable();
     }
 
+    void Awake()
+    {
+        logic = GameObject.FindGameObjectWithTag("Logic").GetComponent<LogicScript>();
+        flapSFX = GetComponent<AudioSource>();
+    }
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        logic = GameObject.FindGameObjectWithTag("Logic").GetComponent<LogicScript>();
+
     }
 
     // Update is called once per frame
@@ -33,6 +40,7 @@ public class BirdScript : MonoBehaviour
 
         if (jump.WasPressedThisFrame() && birdIsAlive)
         {
+            flapSFX.PlayOneShot(flapSFX.clip);
             birdRigidBody.linearVelocity = Vector2.up * flapStrength;
         }
 
