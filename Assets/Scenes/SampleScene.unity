@@ -646,6 +646,7 @@ GameObject:
   - component: {fileID: 1380765354}
   - component: {fileID: 1380765356}
   - component: {fileID: 1380765355}
+  - component: {fileID: 1380765357}
   m_Layer: 3
   m_Name: Bird
   m_TagString: Untagged
@@ -763,11 +764,44 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myRigidbody: {fileID: 1380765354}
-  flapStrength: 16
+  flapStrength: 18
   logic: {fileID: 0}
   birdIsAlive: 1
   pipeSpawnerScript: {fileID: 0}
   pipes: []
+  jump:
+    m_Name: Jump
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: b76bbe3b-18c4-49b8-aebe-28109fd18726
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: 3039a7a6-2113-40b4-bbb0-be5d914092db
+      m_Path: <Keyboard>/space
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Jump
+      m_Flags: 0
+    - m_Name: 
+      m_Id: 66451e44-8907-414f-ad14-b8c1c4214ea6
+      m_Path: <Mouse>/leftButton
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Jump
+      m_Flags: 0
+    - m_Name: 
+      m_Id: 9eacae18-25ef-4485-8b76-d1c1acd9bbf5
+      m_Path: <Touchscreen>/primaryTouch
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Jump
+      m_Flags: 0
+    m_Flags: 0
 --- !u!58 &1380765356
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -804,6 +838,36 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: -0.09, y: -0.49}
   m_Radius: 1.98
+--- !u!114 &1380765357
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1380765351}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
+  m_NotificationBehavior: 0
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents: []
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: Player
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
 --- !u!1 &1605593226
 GameObject:
   m_ObjectHideFlags: 0

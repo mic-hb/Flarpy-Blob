@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class BirdScript : MonoBehaviour
 {
@@ -8,6 +9,17 @@ public class BirdScript : MonoBehaviour
     public bool birdIsAlive = true;
     public PipeSpawnerScript pipeSpawnerScript;
     public GameObject[] pipes;
+    public InputAction jump;
+
+    private void OnEnable()
+    {
+        jump.Enable();
+    }
+
+    private void OnDisable()
+    {
+        jump.Disable();
+    }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -21,7 +33,7 @@ public class BirdScript : MonoBehaviour
     {
         transform.Rotate(new Vector3(0, 0, 90 * Time.deltaTime));
 
-        if ((Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0)) && birdIsAlive)
+        if (jump.WasPressedThisFrame() && birdIsAlive)
         {
             myRigidbody.linearVelocity = Vector2.up * flapStrength;
         }
