@@ -51,6 +51,11 @@ public class LogicScript : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
+    public void goToHome()
+    {
+        SceneManager.LoadSceneAsync("HomeScreen");
+    }
+
     public void gameOver()
     {
         clouds.Pause();
